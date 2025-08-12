@@ -95,18 +95,6 @@ export default function ServicesSection() {
         }} />
       </div>
 
-      {/* Left Band - Before Title - Full Height */}
-      <motion.div 
-        className="absolute left-0 top-0 w-48 h-full z-5"
-        style={{
-          backgroundImage: `url('/backgrounds/fondo-colores-tpi-1.png')`,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          x: backgroundX
-        }}
-      />
-
       <div className="relative z-10 flex items-center justify-center w-full h-full">
         {/* Left Side - Title and Subtitle */}
         <div className="flex-1 flex items-center justify-center px-8">
@@ -128,18 +116,6 @@ export default function ServicesSection() {
             </p>
           </motion.div>
         </div>
-
-        {/* Middle Band - Between Title and Content - Full Height */}
-        <motion.div 
-          className="absolute left-1/2 top-0 w-32 h-full transform -translate-x-1/2 z-5"
-          style={{
-            backgroundImage: `url('/backgrounds/fondo-colores-tpi-1.png')`,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            x: backgroundX
-          }}
-        />
 
         {/* Right Side - Services Grid */}
         <div className="flex-1 flex items-center justify-center px-8">
@@ -181,18 +157,6 @@ export default function ServicesSection() {
           </div>
         </div>
       </div>
-
-      {/* Right Band - After Content - Full Height */}
-      <motion.div 
-        className="absolute right-0 top-0 w-48 h-full z-5"
-        style={{
-          backgroundImage: `url('/backgrounds/fondo-colores-tpi-1.png')`,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          x: backgroundX
-        }}
-      />
     </section>
   );
 } 

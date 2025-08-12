@@ -8,7 +8,8 @@ import TeamSection from '@/components/TeamSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import ContactSection from '@/components/ContactSection';
 import Navigation from '@/components/Navigation';
-import StaticBackground from '@/components/StaticBackground';
+import { executeScrollAfterLoad } from '@/components/SmoothScroll';
+import { scrollToTestimonialsSection } from '@/components/SmoothScroll';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState(0);
@@ -37,13 +38,29 @@ export default function Home() {
     };
 
     window.addEventListener('scroll', handleScroll);
+    
+    // Ejecutar scroll automático si viene de otra página
+    executeScrollAfterLoad();
+    
+    // Hacer la función disponible globalmente
+    (window as any).scrollToTestimonials = scrollToTestimonialsSection;
+    
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <main className="relative">
-      {/* Static Background - Only show for non-hero sections */}
-      {activeSection > 0 && <StaticBackground sectionIndex={activeSection} />}
+      
+      {/* TPI Logo Header */}
+      <div className="fixed top-0 left-0 z-50 p-6">
+        <a href="/" className="block">
+          <img 
+            src="/logos/tpi-logo.svg" 
+            alt="TPI Logo" 
+            className="h-16 w-auto hover:scale-105 transition-transform duration-300"
+          />
+        </a>
+      </div>
       
       {/* Navigation */}
       <Navigation />

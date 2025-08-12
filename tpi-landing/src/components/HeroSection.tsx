@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import InstagramFeed from './InstagramFeed';
 
 export default function HeroSection() {
   return (
@@ -74,76 +75,41 @@ export default function HeroSection() {
             >
               Una agencia de comunicación comprometida en la búsqueda de soluciones positivas e innovadoras para nuestros clientes.
             </motion.p>
+
+            {/* Scroll Indicator */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 2.5 }}
+              className="mt-12"
+            >
+              <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="text-white text-sm font-poppins mb-2"
+              >
+                Scroll para continuar
+              </motion.div>
+              <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-6 h-10 border-2 border-white rounded-full flex justify-center mx-auto"
+              >
+                <motion.div
+                  animate={{ y: [0, 12, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="w-1 h-3 bg-white rounded-full mt-2"
+                />
+              </motion.div>
+            </motion.div>
           </motion.div>
         </div>
 
         {/* Right Side - Content */}
         <div className="flex-1 flex items-center justify-center px-8">
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.2, delay: 0.4 }}
-            className="text-center max-w-2xl"
-          >
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.4 }}
-              className="text-lg md:text-xl lg:text-2xl mb-12 leading-relaxed text-gray-200 font-source-sans"
-            >
-              Estamos convencidos de que las marcas portadoras del pensamiento positivo, serán las marcas que llegarán al corazón de la gente.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.6 }}
-              className="flex flex-col sm:flex-row gap-6 justify-center items-center"
-            >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-10 py-5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg font-poppins text-lg"
-              >
-                Conoce Nuestros Servicios
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-10 py-5 bg-white/10 text-white rounded-full font-semibold hover:bg-white/20 transition-all duration-300 border border-white/30 font-poppins text-lg"
-              >
-                Ver Nuestro Trabajo
-              </motion.button>
-            </motion.div>
-          </motion.div>
+          <InstagramFeed />
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 2.5 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="text-white text-sm font-poppins mb-2"
-        >
-          Scroll para continuar
-        </motion.div>
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-white rounded-full flex justify-center mx-auto"
-        >
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-1 h-3 bg-white rounded-full mt-2"
-          />
-        </motion.div>
-      </motion.div>
     </section>
   );
 } 
