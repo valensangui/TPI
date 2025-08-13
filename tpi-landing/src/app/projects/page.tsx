@@ -13,6 +13,7 @@ import MasonryGallery from '../../components/MasonryGallery';
 // Datos de los proyectos por cliente con información real
 const clientProjects = {
   'del-valle-sidra': {
+    id: 'del-valle-sidra',
     name: "Sidra Del Valle",
     logo: "/delValle/Perfil-DelValle.png",
     description: "Bodegas Cuvillier, una reconocida empresa familiar con más de 50 años en el mercado especializada en elaborar y comercializar Sidra Del Valle.",
@@ -32,6 +33,7 @@ const clientProjects = {
     ]
   },
   'icap-global': {
+    id: 'icap-global',
     name: "ICAP Global",
     logo: "/icap/ICAP-Global-PerfilB.png",
     description: "ICAP Global es la empresa líder en integración tecnológica de audio, video, control y colaboración.",
@@ -51,42 +53,46 @@ const clientProjects = {
     ]
   },
   'wassington': {
+    id: 'wassington',
     name: "Wassington",
     logo: "/logos/wassington.jpg",
     description: "Wassington es una empresa líder en la fabricación de productos para el cuidado y conservación del calzado.",
     fullDescription: "Tiene presencia en todo el territorio nacional argentino y exporta a Uruguay, Paraguay, Chile, Venezuela, Estados Unidos y Brasil.",
     services: ["Branding", "Diseño Gráfico", "Marketing Digital", "Diseño Web"],
     year: "2018",
-    website: null,
+    website: undefined,
     images: []
   },
   'toyota-federico': {
+    id: 'toyota-federico',
     name: "Toyota Federico",
     logo: "/logos/toyotafederico.png",
     description: "Nombrados en 1993 como Concesionario Oficial Toyota, Federico S.A es una empresa familiar comprometida con la fidelización del cliente.",
     fullDescription: "Hoy, nos enfrentamos a un contexto económico difícil, en donde la situación impacta en el mercado con una baja del 54,8% de vehículos patentados sumado a objetivos comerciales exigentes por parte de Toyota. Respondemos de manera proactiva, trabajando enfocados en acciones de marketing, activación de campañas promocionales y canales digitales, comunicación en el punto de venta y actualización de su website.",
     services: ["Branding", "Diseño Gráfico", "Marketing Digital", "Diseño Web", "Eventos"],
     year: "2018",
-    website: null,
+    website: undefined,
     images: [
       "/federico/Postal-A5-TESTDRIVE.jpg",
       "/federico/Posteo-Club-Hipico-2-01-01.png"
     ]
   },
   'pinturerias-jabulani': {
+    id: 'pinturerias-jabulani',
     name: "Pinturerías del Centro Jabulani",
     logo: "/jabulani/JABULANI-Perfil.png",
     description: "Jabulani es uno de los representantes más importantes a nivel nacional de Pinturerías del Centro, la red de pinturerías más grande del país.",
     fullDescription: "Jabulani se destaca por ser líder en ventas y calidad de servicio. En principio, detectamos la necesidad de realizar un upgrade en la marca y en su comunicación. Diseñamos el logo respetando el manual de marca del franquiciante. Desarrollamos distintos proyectos y acciones promocionales. Elaboramos folletería, creamos una fan page con contenido exclusivo, completando el servicio con diseño en los puntos de venta.",
     services: ["Branding", "Estrategia Diferencial", "Diseño Gráfico", "Redes Sociales"],
     year: "2017",
-    website: null,
+    website: undefined,
     images: [
       "/jabulani/Captura-de-pantalla-2016-09-06-a-las-16.33.52.png",
       "/jabulani/12107740_631840770287714_3819074146132773777_n.jpg"
     ]
   },
   'espai': {
+    id: 'espai',
     name: "ESPAI",
     logo: "/espai/Espai-Perfil.png",
     description: "Quintans, una desarrolladora inmobiliaria integral, se crea en el 2010 con el objetivo de construir proyectos urbanos funcionales y de alta calidad.",
@@ -102,6 +108,7 @@ const clientProjects = {
     ]
   },
   'just-plus': {
+    id: 'just-plus',
     name: "JUST",
     logo: "/logos/just.png",
     description: "Just es una empresa familiar de origen Suizo dedicada al área de terapias de bienestar herbal.",
@@ -112,6 +119,7 @@ const clientProjects = {
     images: []
   },
   'forge': {
+    id: 'forge',
     name: "Fundación Forge",
     logo: "/forge/Forge-Perfil.png",
     description: "Fundación Forge es una organización sin fines de lucro creada en el 2005, dedicada a facilitar el acceso laboral de calidad a jóvenes de escasos recursos económicos en América Latina.",
@@ -119,10 +127,10 @@ const clientProjects = {
     services: ["Branding", "Social Media", "Video", "Diseño Web"],
     year: "2016",
     website: "http://www.fondationforge.org",
-    images: [
-    ]
+    images: []
   },
   'ls2-helmets': {
+    id: 'ls2-helmets',
     name: "LS2 Helmets",
     logo: "/ls2/LS2-PerfilB.png",
     description: "LS2 Helmets comienza como una pequeña fábrica de cascos de origen chino.",
@@ -149,6 +157,7 @@ const clientProjects = {
     ]
   },
   'race-tech': {
+    id: 'race-tech',
     name: "Race Tech",
     logo: "/raceTech/RACE-TECH-Perfil.png",
     description: "Race Tech es una marca brasilera de productos para motociclistas que ofrecen seguridad, comodidad y diseño en sus equipos.",
@@ -163,10 +172,11 @@ const clientProjects = {
     ]
   },
   'mcf-marca-futuro': {
+    id: 'mcf-marca-futuro',
     name: "Marca Futuro - Un Proyecto de TPI",
     logo: "/MarcaFuturo/MarcaFuturo-Perfil.png",
     description: "En el 2004, a raíz de una investigación in-house sobre las nuevas tendencias tecnológicas, surgió la idea de crear un proyecto propio.",
-    fullDescription: "Iniciamos el 2006 con 'Hogar y Oficina digital', en el tradicional edificio de La Europea. Concebido como un espacio versátil, abierto al público y empresas, creado con diseño de vanguardia reuniendo lo último en tecnología y confort, trabajamos con el aporte de más de 30 compañías líderes del mercado. Construyendo futuro: Container Sustentable CASA FOA 2009. Junto al Estudio de Arquitectura y Paisajismo Matilde Oyharzabal y en el marco de CASA FOA 2009, se desarrolló un proyecto de vivienda sustentable diseñada para generar el menor impacto al medio ambiente y a las generaciones futuras. Como agencia, desarrollamos la arquitectura marcaria, presentamos una estrategia de marketing digital con el objetivo de posicionar a Marca Futuro como un medio digital que provee información acerca de las tendencias tecnológicas. Gracias a la creación de contenido, logramos engagement, pudiendo alcanzar en el corto plazo más de 1500 seguidores.",
+    fullDescription: "Iniciamos el 2006 con 'Hogar y Oficina digital', en el tradicional edificio de La Europea. Concebido como un espacio versátil, abierto al público y empresas, creado con diseño de vanguardia reuniendo lo último en tecnología y confort, trabajamos con el aporte de más de 30 compañías líderes del mercado. Construyendo futuro: Container Sustentable CASA FOA 2009. Junto al Estudio de Arquitectura y Paisajismo Matilde Oyharzabal y en el marco de CASA FOA 2009, se desarrolló un proyecto de vivienda sustentable diseñado para generar el menor impacto al medio ambiente y a las generaciones futuras. Como agencia, desarrollamos la arquitectura marcaria, presentamos una estrategia de marketing digital con el objetivo de posicionar a Marca Futuro como un medio digital que provee información acerca de las tendencias tecnológicas. Gracias a la creación de contenido, logramos engagement, pudiendo alcanzar en el corto plazo más de 1500 seguidores.",
     services: ["Branding", "Eventos", "Diseño Web"],
     year: "2004 - 2009",
     website: "marcafuturo.com",
@@ -189,6 +199,7 @@ const clientProjects = {
     ]
   },
   'matilde-oyharzabal': {
+    id: 'matilde-oyharzabal',
     name: "Matilde Oyharzabal",
     logo: "/logos/matildeOyharzabal.png",
     description: "Desde el 2009 Matilde Oyharzabal preside su propio estudio de paisajismo junto a un equipo de colaboradores.",
