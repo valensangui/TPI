@@ -18,7 +18,6 @@ export default function Navigation() {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
-      const totalHeight = windowHeight * 12; // 12 "pantallas" de scroll total (1200vh)
       
       // Calculate which section is currently in view
       // Cada sección ocupa aproximadamente 2.4 "pantallas" de scroll (1200vh / 5 secciones = 240vh cada una)

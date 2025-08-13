@@ -1,6 +1,7 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const clients = [
   {
@@ -78,13 +79,6 @@ const clients = [
 ];
 
 export default function TestimonialsSection() {
-  // Usar el scroll global en lugar del scroll de la sección
-  const { scrollYProgress } = useScroll();
-
-  // Transformar el scroll vertical en movimiento horizontal del fondo
-  // El fondo se mueve en dirección opuesta al scroll para crear el efecto parallax
-  const backgroundX = useTransform(scrollYProgress, [0, 1], [0, -300]);
-
   return (
     <section id="testimonials" className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 relative overflow-hidden" style={{ width: '200vw' }}>
       {/* Background Pattern */}
@@ -136,9 +130,11 @@ export default function TestimonialsSection() {
                   >
                     <div className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-110 border border-gray-200 h-24 sm:h-32 flex items-center justify-center cursor-pointer overflow-hidden">
                       <div className="relative w-full h-full flex items-center justify-center">
-                        <img
+                        <Image
                           src={client.logo}
                           alt={client.name}
+                          width={128}
+                          height={128}
                           className="w-full h-full object-contain p-2 filter grayscale group-hover:grayscale-0 transition-all duration-500"
                         />
                         

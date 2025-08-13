@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const services = [
   {
@@ -79,13 +79,6 @@ const services = [
 ];
 
 export default function ServicesSection() {
-  // Usar el scroll global en lugar del scroll de la sección
-  const { scrollYProgress } = useScroll();
-
-  // Transformar el scroll vertical en movimiento horizontal del fondo
-  // El fondo se mueve en dirección opuesta al scroll para crear el efecto parallax
-  const backgroundX = useTransform(scrollYProgress, [0, 1], [0, -300]);
-
   return (
     <section id="services" className="w-screen h-screen flex items-center justify-center bg-white relative overflow-hidden" style={{ width: '200vw' }}>
       {/* Background Pattern */}

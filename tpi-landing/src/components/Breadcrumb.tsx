@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { navigateToTestimonials } from './SmoothScroll';
 
 interface BreadcrumbProps {
@@ -20,9 +21,9 @@ export default function Breadcrumb({ clientName }: BreadcrumbProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35 }}
     >
-      <a href="/" className="hover:text-blue-600 transition-colors duration-200">
+      <Link href="/" className="hover:text-blue-600 transition-colors duration-200">
         Inicio
-      </a>
+      </Link>
       <span>/</span>
       <button 
         onClick={handleProyectosClick}

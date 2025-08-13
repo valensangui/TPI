@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 interface ImageGalleryProps {
   images: string[];
@@ -65,9 +66,11 @@ export default function ImageGallery({ images, title }: ImageGalleryProps) {
                   />
                 ) : (
                   // Renderizar imagen
-                  <img
+                  <Image
                     src={media}
                     alt={`${title} - Imagen ${index + 1}`}
+                    width={400}
+                    height={300}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                   />
                 )}
@@ -153,11 +156,12 @@ export default function ImageGallery({ images, title }: ImageGalleryProps) {
                 />
               ) : (
                 // Renderizar imagen en el modal
-                <img
+                <Image
                   src={images[selectedMedia]}
                   alt={`${title} - Imagen ${selectedMedia + 1}`}
+                  width={800}
+                  height={600}
                   className="max-w-full max-h-full object-contain"
-                  onClick={(e) => e.stopPropagation()}
                 />
               )}
 

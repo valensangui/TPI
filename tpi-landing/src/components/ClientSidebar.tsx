@@ -1,9 +1,22 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+
+interface Client {
+  id: string;
+  name: string;
+  logo: string;
+  description: string;
+  services: string[];
+  year: string;
+  images: string[];
+  website?: string;
+  fullDescription?: string;
+}
 
 interface ClientSidebarProps {
-  client: any;
+  client: Client;
   currentClientId: string;
   allClientIds: string[];
   onNavigate: (clientId: string) => void;
@@ -48,9 +61,11 @@ export default function ClientSidebar({
         transition={{ duration: 0.35, delay: 0.1 }}
         viewport={{ once: true }}
       >
-        <img
+        <Image
           src={client.logo}
           alt={`Logo de ${client.name}`}
+          width={80}
+          height={80}
           className="mx-auto h-20 w-auto object-contain mb-4 pointer-events-none"
         />
         <h1 className="text-2xl font-bold text-gray-900 font-cairo">

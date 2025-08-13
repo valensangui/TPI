@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import HorizontalScroll from '@/components/HorizontalScroll';
 import HeroSection from '@/components/HeroSection';
 import ServicesSection from '@/components/ServicesSection';
@@ -11,41 +13,20 @@ import Navigation from '@/components/Navigation';
 import { executeScrollAfterLoad } from '@/components/SmoothScroll';
 import { scrollToTestimonialsSection } from '@/components/SmoothScroll';
 
+// Extender la interfaz Window para incluir nuestra función personalizada
+declare global {
+  interface Window {
+    scrollToTestimonials: () => void;
+  }
+}
+
 export default function Home() {
-  const [activeSection, setActiveSection] = useState(0);
-
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const sectionHeight = windowHeight * 2.4;
-      
-      let currentSection = 0;
-      
-      if (scrollPosition < sectionHeight * 0.5) {
-        currentSection = 0; // Hero
-      } else if (scrollPosition < sectionHeight * 1.5) {
-        currentSection = 1; // Services
-      } else if (scrollPosition < sectionHeight * 2.5) {
-        currentSection = 2; // Team
-      } else if (scrollPosition < sectionHeight * 3.5) {
-        currentSection = 3; // Testimonials
-      } else {
-        currentSection = 4; // Contact
-      }
-      
-      setActiveSection(currentSection);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    
     // Ejecutar scroll automático si viene de otra página
     executeScrollAfterLoad();
     
     // Hacer la función disponible globalmente
-    (window as any).scrollToTestimonials = scrollToTestimonialsSection;
-    
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.scrollToTestimonials = scrollToTestimonialsSection;
   }, []);
 
   return (
@@ -53,13 +34,15 @@ export default function Home() {
       
       {/* TPI Logo Header */}
       <div className="fixed top-0 left-0 z-50 p-6">
-        <a href="/" className="block">
-          <img 
+        <Link href="/" className="block">
+          <Image 
             src="/logos/tpi-logo.svg" 
             alt="TPI Logo" 
+            width={64}
+            height={64}
             className="h-16 w-auto hover:scale-105 transition-transform duration-300"
           />
-        </a>
+        </Link>
       </div>
       
       {/* Navigation */}

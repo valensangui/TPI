@@ -1,8 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 interface MasonryGalleryProps {
   images: string[];
@@ -96,9 +96,11 @@ export default function MasonryGallery({ images, title }: MasonryGalleryProps) {
                     loading="lazy"
                   />
                 ) : (
-                  <img
+                  <Image
                     src={media}
                     alt={`${title} - imagen ${index + 1}`}
+                    width={400}
+                    height={300}
                     className="w-full h-auto object-cover pointer-events-none"
                     loading="lazy"
                   />
@@ -183,11 +185,12 @@ export default function MasonryGallery({ images, title }: MasonryGalleryProps) {
                   onClick={(e) => e.stopPropagation()}
                 />
               ) : (
-                <img
+                <Image
                   src={images[selectedMedia]}
                   alt={`${title} - imagen ${selectedMedia + 1}`}
+                  width={800}
+                  height={600}
                   className="max-w-full max-h-full object-contain"
-                  onClick={(e) => e.stopPropagation()}
                 />
               )}
 

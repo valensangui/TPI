@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
+import Image from 'next/image';
 import { navigateToTestimonials } from '../../components/SmoothScroll';
 import Breadcrumb from '../../components/Breadcrumb';
 import ClientSidebar from '../../components/ClientSidebar';
@@ -273,13 +275,15 @@ export default function ProjectsPage() {
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo TPI */}
-          <a href="/" className="flex items-center">
-            <img 
+          <Link href="/" className="flex items-center">
+            <Image 
               src="/logos/tpi-logo.svg" 
               alt="TPI Logo" 
+              width={32}
+              height={32}
               className="h-8 w-auto"
             />
-          </a>
+          </Link>
           
           {/* Breadcrumb */}
           <div className="flex items-center gap-4">

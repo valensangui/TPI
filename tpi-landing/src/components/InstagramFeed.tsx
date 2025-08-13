@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 interface InstagramPost {
   id: number;
@@ -126,9 +127,11 @@ export default function InstagramFeed() {
             <div className="relative overflow-hidden rounded-xl bg-white/5 border border-white/10 hover:border-white/30 transition-all duration-300">
               {/* Imagen del Post */}
               <div className="aspect-square overflow-hidden">
-                <img
+                <Image
                   src={post.image}
                   alt={`${post.clientName} - ${post.caption}`}
+                  width={200}
+                  height={200}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
               </div>

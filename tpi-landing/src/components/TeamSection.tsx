@@ -1,6 +1,7 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const teamMembers = [
   {
@@ -48,13 +49,6 @@ const teamMembers = [
 ];
 
 export default function TeamSection() {
-  // Usar el scroll global en lugar del scroll de la sección
-  const { scrollYProgress } = useScroll();
-
-  // Transformar el scroll vertical en movimiento horizontal del fondo
-  // El fondo se mueve en dirección opuesta al scroll para crear el efecto parallax
-  const backgroundX = useTransform(scrollYProgress, [0, 1], [0, -300]);
-
   return (
     <section id="team" className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 via-blue-50 to-purple-50 relative overflow-hidden" style={{ width: '200vw' }}>
       {/* Background Pattern */}
@@ -101,9 +95,11 @@ export default function TeamSection() {
                 <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
                   {/* Image */}
                   <div className="relative h-48 sm:h-56 overflow-hidden">
-                    <img
+                    <Image
                       src={member.image}
                       alt={member.name}
+                      width={224}
+                      height={224}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     
