@@ -93,7 +93,6 @@ export default function MasonryGallery({ images, title }: MasonryGalleryProps) {
                     className="w-full h-auto object-cover pointer-events-none"
                     muted
                     preload="metadata"
-                    loading="lazy"
                   />
                 ) : (
                   <Image
