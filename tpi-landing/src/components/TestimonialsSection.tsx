@@ -2,78 +2,91 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import BackgroundBar from './BackgroundBar';
 
 const clients = [
   {
     name: "Del Valle Sidra",
     service: "Branding & Diseño Gráfico",
     logo: "/logos/delValle.png",
+    logoColor: "/delValle/Perfil-DelValle.png",
     id: "del-valle-sidra"
   },
   {
     name: "iCAP GLOBAL",
     service: "Marketing Digital & SEO",
     logo: "/logos/icap.png",
+    logoColor: "/icap/ICAP-Global-PerfilB.png",
     id: "icap-global"
   },
   {
     name: "WASSINGTON",
     service: "Diseño Web & Desarrollo",
     logo: "/logos/wassington.jpg",
+    logoColor: "/logos/wassington.jpg",
     id: "wassington"
   },
   {
     name: "Toyota FEDERICO",
     service: "Comunicación & Eventos",
     logo: "/logos/toyotafederico.png",
+    logoColor: "/logos/toyotafederico.png",
     id: "toyota-federico"
   },
   {
     name: "PINTURERÍAS JABULANI",
     service: "Branding & Diseño Gráfico",
     logo: "/logos/jabulani.png",
+    logoColor: "/jabulani/JABULANI-Perfil.png",
     id: "pinturerias-jabulani"
   },
   {
     name: "espai",
     service: "Diseño Web & UX/UI",
     logo: "/logos/espai.png",
+    logoColor: "/espai/Espai-Perfil.png",
     id: "espai"
   },
   {
     name: "Just+",
     service: "Marketing Digital & Redes",
     logo: "/logos/just.png",
+    logoColor: "/logos/just.png",
     id: "just-plus"
   },
   {
     name: "FORGE",
     service: "Branding & Identidad Visual",
     logo: "/logos/forge.png",
+    logoColor: "/forge/Forge-Perfil.png",
     id: "forge"
   },
   {
     name: "LS2 HELMETS",
     service: "Diseño Gráfico & Packaging",
     logo: "/logos/LS2.png",
+    logoColor: "/ls2/LS2-PerfilB.png",
     id: "ls2-helmets"
   },
   {
     name: "RACE TECH",
     service: "Audiovisual & Video",
     logo: "/logos/raceTech.png",
+    logoColor: "/raceTech/RACE-TECH-Perfil.png",
     id: "race-tech"
   },
   {
     name: "M©F MARCA FUTURO",
     service: "Estrategia & Comunicación",
     logo: "/logos/marcaFuturo.png",
+    logoColor: "/MarcaFuturo/MarcaFuturo-Perfil.png",
     id: "mcf-marca-futuro"
   },
   {
     name: "Matilde Oyharzabal",
     service: "Branding & Diseño Gráfico",
     logo: "/logos/matildeOyharzabal.png",
+    logoColor: "/logos/matildeOyharzabal.png",
     id: "matilde-oyharzabal"
   }
 ];
@@ -128,24 +141,41 @@ export default function TestimonialsSection() {
                     href={`/projects?client=${client.id}`}
                     className="block"
                   >
-                    <div className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-110 border border-gray-200 h-24 sm:h-32 flex items-center justify-center cursor-pointer overflow-hidden">
+                    <div className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-110 border border-gray-200 h-24 sm:h-32 flex items-center justify-center cursor-pointer overflow-hidden relative group">
                       <div className="relative w-full h-full flex items-center justify-center">
+                        {/* Logo en escala de grises (por defecto) */}
                         <Image
                           src={client.logo}
                           alt={client.name}
                           width={128}
                           height={128}
-                          className="w-full h-full object-contain p-2 filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                          className="w-full h-full object-contain p-2 filter grayscale transition-all duration-500 absolute inset-0"
                         />
                         
-                        {/* Hover Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center">
-                          <div className="text-center text-white p-3 w-full">
-                            <h4 className="font-bold text-sm mb-1 font-cairo">{client.name}</h4>
-                            <p className="text-xs text-blue-200 leading-tight font-source-sans">{client.service}</p>
-                            <div className="text-xs text-blue-300 mt-1">Click para ver proyectos</div>
-                          </div>
+                        {/* Logo en color (aparece en hover) */}
+                        <Image
+                          src={client.logoColor}
+                          alt={client.name}
+                          width={128}
+                          height={128}
+                          className="w-full h-full object-contain p-2 opacity-0 group-hover:opacity-100 transition-all duration-500 absolute inset-0"
+                        />
+                      </div>
+                      
+                      {/* Indicador de clickeable */}
+                      <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center shadow-lg">
+                          <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
                         </div>
+                      </div>
+                      
+                      {/* Texto sutil en la parte inferior */}
+                      <div className="absolute bottom-2 left-0 right-0 text-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <span className="text-xs text-blue-600 font-medium bg-white/90 px-2 py-1 rounded-full shadow-sm">
+                          Ver proyectos
+                        </span>
                       </div>
                     </div>
                   </a>
@@ -181,6 +211,12 @@ export default function TestimonialsSection() {
           </div>
         </div>
       </div>
+
+      {/* Barra de fondo con imagen única */}
+      <BackgroundBar 
+        image="/backgrounds/fondo-colores-tpi-6.png"
+        height="h-20"
+      />
     </section>
   );
 } 

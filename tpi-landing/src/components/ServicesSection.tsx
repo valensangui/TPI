@@ -1,11 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useState } from 'react';
+import BackgroundBar from './BackgroundBar';
 
 const services = [
   {
     title: "Marketing Digital",
-    description: "Redes Sociales, Email Marketing, SEO, SEM y Data Analytics para impulsar tu presencia online",
+    shortDescription: "Redes Sociales, SEO y Analytics",
+    fullDescription: "Redes Sociales, Email Marketing, SEO, SEM y Data Analytics para impulsar tu presencia online",
     icon: "🚀",
     color: "from-blue-500 to-cyan-500",
     details: [
@@ -18,7 +21,8 @@ const services = [
   },
   {
     title: "Diseño Web",
-    description: "Desarrollo web responsive y moderno para crear experiencias digitales únicas",
+    shortDescription: "Sitios web responsive y modernos",
+    fullDescription: "Desarrollo web responsive y moderno para crear experiencias digitales únicas",
     icon: "💻",
     color: "from-purple-500 to-pink-500",
     details: [
@@ -29,7 +33,8 @@ const services = [
   },
   {
     title: "Diseño Gráfico",
-    description: "Creación de identidades visuales impactantes y contenido creativo",
+    shortDescription: "Identidades visuales impactantes",
+    fullDescription: "Creación de identidades visuales impactantes y contenido creativo",
     icon: "🎨",
     color: "from-green-500 to-teal-500",
     details: [
@@ -44,7 +49,8 @@ const services = [
   },
   {
     title: "Audiovisual",
-    description: "Producción de contenido multimedia profesional para tu marca",
+    shortDescription: "Contenido multimedia profesional",
+    fullDescription: "Producción de contenido multimedia profesional para tu marca",
     icon: "🎬",
     color: "from-orange-500 to-red-500",
     details: [
@@ -55,7 +61,8 @@ const services = [
   },
   {
     title: "Comunicación",
-    description: "Estrategias integrales de comunicación para posicionar tu marca",
+    shortDescription: "Estrategias integrales de marca",
+    fullDescription: "Estrategias integrales de comunicación para posicionar tu marca",
     icon: "📢",
     color: "from-indigo-500 to-purple-500",
     details: [
@@ -67,7 +74,8 @@ const services = [
   },
   {
     title: "Eventos",
-    description: "Organización y producción de eventos memorables para tu marca",
+    shortDescription: "Eventos memorables para tu marca",
+    fullDescription: "Organización y producción de eventos memorables para tu marca",
     icon: "🎪",
     color: "from-pink-500 to-rose-500",
     details: [
@@ -79,6 +87,8 @@ const services = [
 ];
 
 export default function ServicesSection() {
+  const [hoveredService, setHoveredService] = useState<number | null>(null);
+
   return (
     <section id="services" className="w-screen h-screen flex items-center justify-center bg-white relative overflow-hidden" style={{ width: '200vw' }}>
       {/* Background Pattern */}
@@ -105,51 +115,120 @@ export default function ServicesSection() {
               Servicios
             </h2>
             <p className="text-xl md:text-2xl lg:text-3xl text-gray-600 max-w-2xl mx-auto font-poppins">
-              Transformamos ideas en experiencias digitales extraordinarias con nuestro enfoque de pensamiento positivo
+              Transformamos ideas en experiencias digitales extraordinarias
             </p>
           </motion.div>
         </div>
 
         {/* Right Side - Services Grid */}
         <div className="flex-1 flex items-center justify-center px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl relative">
             {services.map((service, index) => (
-              <motion.div
+              <div
                 key={service.title}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -10, scale: 1.05 }}
-                className="group"
+                className="relative group"
+                onMouseEnter={() => setHoveredService(index)}
+                onMouseLeave={() => setHoveredService(null)}
               >
-                <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 h-full border border-gray-100">
-                  <div className={`w-12 h-12 bg-gradient-to-r ${service.color} rounded-2xl flex items-center justify-center text-xl mb-4`}>
+                {/* Card Principal */}
+                <div className={`bg-white p-6 shadow-lg transition-all duration-500 h-full border border-gray-200 relative overflow-visible ${
+                  hoveredService === index 
+                    ? 'rounded-2xl shadow-2xl scale-110 z-50' 
+                    : hoveredService !== null 
+                      ? 'opacity-20 scale-95 blur-sm' 
+                      : 'rounded-2xl hover:shadow-2xl'
+                }`}>
+                  {/* Contenido Principal */}
+                  <div className={`w-14 h-14 bg-gradient-to-r ${service.color} rounded-2xl flex items-center justify-center text-2xl mb-4`}>
                     {service.icon}
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 font-cairo">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 font-cairo">
                     {service.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed mb-4 text-sm font-source-sans">
-                    {service.description}
+                  <p className="text-gray-600 leading-relaxed text-sm font-source-sans">
+                    {service.shortDescription}
                   </p>
-                  <ul className="space-y-1 mb-4">
-                    {service.details.slice(0, 3).map((detail, idx) => (
-                      <li key={idx} className="text-xs text-gray-500 flex items-center font-source-sans">
-                        <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
-                        {detail}
-                      </li>
-                    ))}
-                  </ul>
-                  <button className="w-full py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 font-poppins text-sm">
-                    Saber más
-                  </button>
+                  
+                  {/* Indicador de Hover */}
+                  {hoveredService === index && (
+                    <div className="absolute top-4 right-4">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                    </div>
+                  )}
                 </div>
-              </motion.div>
+
+                {/* Panel Expandido - Solo cuando está en hover */}
+                {hoveredService === index && (
+                  <div className={`absolute bg-white rounded-2xl shadow-2xl border border-gray-200 p-6 z-50 ${
+                    // Posición específica para cada servicio
+                    index === 0 ? 'left-1/2 top-[100%] transform -translate-x-1/2 -translate-y-1/2 w-96 h-[32rem]' : // Servicio 0
+                    index === 1 ? 'left-1/2 top-[100%] transform -translate-x-1/2 -translate-y-1/2 w-96 h-96' : // Servicio 1
+                    index === 2 ? 'left-1/2 top-[100%] transform -translate-x-1/2 -translate-y-1/2 w-96 h-[32rem]' : // Servicio 2
+                    index === 3 ? 'left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96' : // Servicio 3
+                    index === 4 ? 'left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96': // Servicio 4
+                    index === 5 ? 'left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96' : // Servicio 5
+                    index === 6 ? 'right-full top-0 mr-4 w-96 h-[32rem]' : // Servicio 6
+                    index === 7 ? 'right-full top-0 mr-4 w-96 h-[32rem]' : // Servicio 7
+                    'right-full top-0 mr-4 w-96 h-[32rem]' // Servicio 8
+                  }`}>
+                    {/* Header del servicio - Línea superior */}
+                    <div className="flex items-center mb-6">
+                      <div className={`w-16 h-16 bg-gradient-to-r ${service.color} rounded-2xl flex items-center justify-center text-3xl mr-4`}>
+                        {service.icon}
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold text-gray-900 mb-2 font-cairo">
+                          {service.title}
+                        </h3>
+                        <p className="text-gray-600 text-base font-source-sans">
+                          {service.shortDescription}
+                        </p>
+                      </div>
+                    </div>
+                    
+                    {/* Contenido principal - Layout horizontal */}
+                    <div className="flex gap-8">
+                      {/* Columna izquierda - Descripción */}
+                      <div className="flex-1">
+                        <h4 className="text-lg font-semibold text-gray-800 mb-3 font-cairo">Descripción</h4>
+                        <p className="text-gray-700 text-sm font-source-sans leading-relaxed">
+                          {service.fullDescription}
+                        </p>
+                      </div>
+                      
+                      {/* Columna derecha - Lista de detalles */}
+                      <div className="flex-1">
+                        <h4 className="text-lg font-semibold text-gray-800 mb-3 font-cairo">Lo que incluye:</h4>
+                        <ul className="space-y-2">
+                          {service.details.map((detail, idx) => (
+                            <li key={idx} className="text-sm text-gray-600 flex items-center font-source-sans">
+                              <span className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mr-3 flex-shrink-0"></span>
+                              {detail}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    {/* Botón de acción - Centrado en la parte inferior */}
+                    <div className="mt-6 text-center">
+                      <button className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-poppins text-lg">
+                        Solicitar Servicio
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         </div>
       </div>
+
+      {/* Barra de fondo con imagen única */}
+      <BackgroundBar 
+        image="/backgrounds/fondo-colores-tpi-1.png"
+        height="h-20"
+      />
     </section>
   );
 } 

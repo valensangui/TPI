@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import BackgroundBar from './BackgroundBar';
 
 const teamMembers = [
   {
@@ -82,7 +83,7 @@ export default function TeamSection() {
 
         {/* Right Side - Team Grid */}
         <div className="flex-1 flex items-center justify-center px-8">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 max-w-5xl">
             {teamMembers.map((member, index) => (
               <motion.div
                 key={member.name}
@@ -92,27 +93,27 @@ export default function TeamSection() {
                 viewport={{ once: true }}
                 className="group relative"
               >
-                <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
+                <div className="relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
                   {/* Image */}
-                  <div className="relative h-48 sm:h-56 overflow-hidden">
+                  <div className="relative h-36 sm:h-40 overflow-hidden">
                     <Image
                       src={member.image}
                       alt={member.name}
-                      width={224}
-                      height={224}
+                      width={160}
+                      height={160}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     
                     {/* Overlay on hover */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                        <h3 className="text-lg font-bold mb-1 font-cairo">{member.name}</h3>
-                        <p className="text-blue-200 mb-3 text-sm font-source-sans">{member.role}</p>
+                      <div className="absolute bottom-0 left-0 right-0 p-3 text-white">
+                        <h3 className="text-base font-bold mb-1 font-cairo">{member.name}</h3>
+                        <p className="text-blue-200 mb-2 text-xs font-source-sans">{member.role}</p>
                         <motion.a
                           href={member.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center px-3 py-1.5 bg-blue-600 text-white rounded-full text-xs font-semibold hover:bg-blue-700 transition-colors duration-300 font-poppins"
+                          className="inline-flex items-center px-2.5 py-1 bg-blue-600 text-white rounded-full text-xs font-semibold hover:bg-blue-700 transition-colors duration-300 font-poppins"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                         >
@@ -126,9 +127,9 @@ export default function TeamSection() {
                   </div>
                   
                   {/* Default info */}
-                  <div className="p-4 group-hover:hidden">
-                    <h3 className="text-lg font-bold text-gray-900 mb-1 font-cairo">{member.name}</h3>
-                    <p className="text-gray-600 text-sm font-source-sans">{member.role}</p>
+                  <div className="p-3 group-hover:hidden">
+                    <h3 className="text-base font-bold text-gray-900 mb-1 font-cairo">{member.name}</h3>
+                    <p className="text-gray-600 text-xs font-source-sans">{member.role}</p>
                   </div>
                 </div>
               </motion.div>
@@ -136,6 +137,12 @@ export default function TeamSection() {
           </div>
         </div>
       </div>
+
+      {/* Barra de fondo con imagen única */}
+      <BackgroundBar 
+        image="/backgrounds/fondo-colores-tpi-4.png"
+        height="h-20"
+      />
     </section>
   );
 } 

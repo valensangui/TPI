@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import InstagramFeed from './InstagramFeed';
+import InstagramFeed, { InstagramFeedAlt } from './InstagramFeed';
 
 export default function HeroSection() {
   return (
@@ -105,9 +105,29 @@ export default function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Right Side - Content */}
+        {/* Right Side - Two Instagram Feeds */}
         <div className="flex-1 flex items-center justify-center px-8">
-          <InstagramFeed />
+          <div className="flex gap-16">
+            {/* Primer Feed - Principal */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.8 }}
+              className="flex justify-center mt-30"
+            >
+              <InstagramFeed />
+            </motion.div>
+            
+            {/* Segundo Feed - Alternativo */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 1.0 }}
+              className="flex justify-center mt-30"
+            >
+              <InstagramFeedAlt />
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
