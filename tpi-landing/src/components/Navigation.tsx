@@ -65,15 +65,15 @@ export default function Navigation() {
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 1 }}
-      className="fixed top-2 sm:top-4 md:top-6 lg:top-8 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg px-2 sm:px-0"
+      className="fixed top-4 sm:top-6 lg:top-8 left-1/2 transform -translate-x-1/2 z-50"
     >
-      <div className="bg-black/20 backdrop-blur-xl rounded-full px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 border border-white/30 shadow-2xl">
-        <div className="flex space-x-2 sm:space-x-4 md:space-x-6 lg:space-x-8 justify-center">
+      <div className="bg-black/20 backdrop-blur-xl rounded-full px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 border border-white/30 shadow-2xl">
+        <div className="flex space-x-4 sm:space-x-6 lg:space-x-8">
           {sections.map((section) => (
             <motion.button
               key={section.id}
               onClick={() => scrollToSection(section.id)}
-              className={`relative px-1.5 sm:px-2 md:px-3 lg:px-4 py-1 sm:py-2 text-xs sm:text-sm lg:text-base font-semibold transition-colors duration-300 ${
+              className={`relative px-2 sm:px-3 lg:px-4 py-1 sm:py-2 text-xs sm:text-sm lg:text-base font-semibold transition-colors duration-300 ${
                 activeSection === section.id
                   ? 'text-white'
                   : 'text-white/80 hover:text-white'
@@ -81,14 +81,7 @@ export default function Navigation() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="hidden sm:inline">{section.label}</span>
-              <span className="sm:hidden">
-                {section.id === 'hero' ? 'Inicio' : 
-                 section.id === 'services' ? 'Serv.' : 
-                 section.id === 'team' ? 'Equipo' : 
-                 section.id === 'testimonials' ? 'Marcas' : 
-                 section.id === 'contact' ? 'Cont.' : section.label}
-              </span>
+              {section.label}
               {activeSection === section.id && (
                 <motion.div
                   layoutId="activeSection"

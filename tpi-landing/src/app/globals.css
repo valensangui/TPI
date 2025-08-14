@@ -101,63 +101,6 @@ html::-webkit-scrollbar {
   background: #555;
 }
 
-/* Responsive improvements */
-@media (max-width: 640px) {
-  /* Small screens */
-  .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  
-  /* Ensure text doesn't overflow on small screens */
-  h1, h2, h3, h4, h5, h6 {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-  }
-  
-  /* Improve touch targets on mobile */
-  button, a {
-    min-height: 44px;
-    min-width: 44px;
-  }
-}
-
-@media (max-width: 768px) {
-  /* Medium screens */
-  .container {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-}
-
-/* Prevent horizontal scroll on mobile */
-@media (max-width: 1024px) {
-  body {
-    overflow-x: hidden;
-  }
-  
-  .scroll-content {
-    width: 100vw !important;
-  }
-}
-
-/* Improve focus states for accessibility */
-button:focus,
-a:focus,
-input:focus,
-textarea:focus {
-  outline: 2px solid #3b82f6;
-  outline-offset: 2px;
-}
-
-/* Smooth transitions for all interactive elements */
-button,
-a,
-input,
-textarea {
-  transition: all 0.2s ease-in-out;
-}
-
 /* Tipografías personalizadas */
 .font-cairo {
   font-family: var(--font-cairo), sans-serif;
