@@ -279,12 +279,12 @@ function ProjectsPageContent() {
     <div className="min-h-screen bg-gray-50">
       {/* Top Bar Sticky */}
       <motion.header
-        className="sticky top-0 z-40 bg-white/90 backdrop-blur-sm border-b border-gray-200 px-6 py-4"
+        className="sticky top-0 z-40 bg-white/90 backdrop-blur-sm border-b border-gray-200 px-4 sm:px-6 py-3 sm:py-4"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35 }}
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
           {/* Logo TPI */}
           <Link href="/" className="flex items-center">
             <Image 
@@ -296,8 +296,8 @@ function ProjectsPageContent() {
             />
           </Link>
           
-          {/* Breadcrumb */}
-          <div className="flex items-center gap-4">
+          {/* Breadcrumb y navegación */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 w-full sm:w-auto">
             <Breadcrumb clientName={client.name} />
             
             {/* Indicador de navegación */}
@@ -306,9 +306,9 @@ function ProjectsPageContent() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
-                className="flex items-center gap-2 text-blue-600 text-sm"
+                className="flex items-center gap-2 text-blue-600 text-xs sm:text-sm"
               >
-                <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                <div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
                 <span>Cambiando proyecto...</span>
               </motion.div>
             )}
@@ -317,8 +317,8 @@ function ProjectsPageContent() {
       </motion.header>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-8">
-        <div className="flex flex-col lg:flex-row gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        <div className="flex flex-col lg:flex-row gap-6 sm:gap-8">
           {/* Sidebar */}
           <ClientSidebar
             client={client}
@@ -329,18 +329,18 @@ function ProjectsPageContent() {
           />
 
           {/* Main Content Area */}
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
             {/* Resumen Card */}
             {client.fullDescription && (
               <motion.div
-                className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-8"
+                className="bg-white rounded-xl sm:rounded-2xl shadow-lg border border-gray-100 p-4 sm:p-6 mb-6 sm:mb-8"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 font-cairo pointer-events-none">Resumen del Proyecto</h2>
-                <p className="text-gray-700 leading-relaxed pointer-events-none">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 font-cairo pointer-events-none">Resumen del Proyecto</h2>
+                <p className="text-gray-700 leading-relaxed text-sm sm:text-base pointer-events-none">
                   {client.fullDescription}
                 </p>
               </motion.div>
@@ -353,9 +353,9 @@ function ProjectsPageContent() {
               transition={{ duration: 0.35, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-gray-900 font-cairo pointer-events-none">Galería de Proyectos</h2>
-                <div className="text-sm text-gray-500 bg-blue-50 px-3 py-2 rounded-lg pointer-events-none">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 sm:mb-6 gap-3 sm:gap-0">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 font-cairo pointer-events-none">Galería de Proyectos</h2>
+                <div className="text-xs sm:text-sm text-gray-500 bg-blue-50 px-3 py-2 rounded-lg pointer-events-none">
                   💡 <strong>Tip:</strong> Haz click en cualquier imagen para verla en grande y navegar entre las imágenes del proyecto
                 </div>
               </div>

@@ -5,7 +5,7 @@ import InstagramFeed from './InstagramFeed';
 
 export default function HeroSection() {
   return (
-    <section id="hero" className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 relative overflow-hidden" style={{ width: '200vw' }}>
+    <section id="hero" className="w-screen h-screen flex flex-col lg:flex-row items-center justify-center bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 relative overflow-hidden" style={{ width: '200vw' }}>
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
@@ -15,7 +15,7 @@ export default function HeroSection() {
 
       {/* Animated Background Elements */}
       <motion.div
-        className="absolute top-1/4 right-1/4 w-64 h-64 bg-white/5 rounded-full blur-3xl"
+        className="absolute top-1/4 right-1/4 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-white/5 rounded-full blur-3xl"
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.3, 0.6, 0.3],
@@ -27,7 +27,7 @@ export default function HeroSection() {
         }}
       />
       <motion.div
-        className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"
+        className="absolute bottom-1/4 left-1/4 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-white/5 rounded-full blur-3xl"
         animate={{
           scale: [1.2, 1, 1.2],
           opacity: [0.2, 0.5, 0.2],
@@ -40,9 +40,9 @@ export default function HeroSection() {
       />
 
       {/* Content Container */}
-      <div className="relative z-10 flex items-center justify-center w-full h-full">
+      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center w-full h-full">
         {/* Left Side - Title and Subtitle */}
-        <div className="flex-1 flex items-center justify-center px-8">
+        <div className="flex-1 flex items-center justify-center px-4 sm:px-6 md:px-8 order-2 lg:order-1">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -53,7 +53,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.4 }}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent font-cairo leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent font-cairo leading-tight"
             >
               SOMOS
             </motion.h1>
@@ -61,7 +61,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.6 }}
-              className="text-5xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent font-cairo leading-none"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent font-cairo leading-none"
             >
               THINK POSITIVE IDEAS
             </motion.h2>
@@ -71,7 +71,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.2 }}
-              className="text-xl md:text-2xl lg:text-3xl mt-8 leading-relaxed font-poppins text-white"
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl mt-6 sm:mt-8 leading-relaxed font-poppins text-white px-4 sm:px-0"
             >
               Una agencia de comunicación comprometida en la búsqueda de soluciones positivas e innovadoras para nuestros clientes.
             </motion.p>
@@ -81,24 +81,24 @@ export default function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 2.5 }}
-              className="mt-12"
+              className="mt-8 sm:mt-12"
             >
               <motion.div
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="text-white text-sm font-poppins mb-2"
+                className="text-white text-xs sm:text-sm font-poppins mb-2"
               >
                 Scroll para continuar
               </motion.div>
               <motion.div
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="w-6 h-10 border-2 border-white rounded-full flex justify-center mx-auto"
+                className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white rounded-full flex justify-center mx-auto"
               >
                 <motion.div
                   animate={{ y: [0, 12, 0] }}
                   transition={{ duration: 2, repeat: Infinity }}
-                  className="w-1 h-3 bg-white rounded-full mt-2"
+                  className="w-1 h-2 sm:h-3 bg-white rounded-full mt-2"
                 />
               </motion.div>
             </motion.div>
@@ -106,7 +106,7 @@ export default function HeroSection() {
         </div>
 
         {/* Right Side - Content */}
-        <div className="flex-1 flex items-center justify-center px-8">
+        <div className="flex-1 flex items-center justify-center px-4 sm:px-6 md:px-8 order-1 lg:order-2 mb-8 lg:mb-0">
           <InstagramFeed />
         </div>
       </div>

@@ -41,7 +41,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
       style={{ height: '1200vh' }} // Aumentamos significativamente la altura para más espacio de scroll
     >
       <motion.div
-        className="scroll-content flex absolute top-0 left-0 h-screen"
+        className="scroll-content flex absolute top-0 left-0 h-screen w-full sm:w-auto"
         style={{
           x,
           position: 'fixed',

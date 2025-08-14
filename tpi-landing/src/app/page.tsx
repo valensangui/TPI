@@ -33,14 +33,14 @@ export default function Home() {
     <main className="relative">
       
       {/* TPI Logo Header */}
-      <div className="fixed top-0 left-0 z-50 p-6">
+      <div className="fixed top-0 left-0 z-50 p-3 sm:p-4 md:p-6">
         <Link href="/" className="block">
           <Image 
             src="/logos/tpi-logo.svg" 
             alt="TPI Logo" 
             width={64}
             height={64}
-            className="h-16 w-auto hover:scale-105 transition-transform duration-300"
+            className="h-12 w-auto sm:h-14 md:h-16 hover:scale-105 transition-transform duration-300"
           />
         </Link>
       </div>
