@@ -1,8 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import BackgroundBar from './BackgroundBar';
+import * as THREE from 'three';
 
 const services = [
   {
@@ -88,6 +89,168 @@ const services = [
 
 export default function ServicesSection() {
   const [hoveredService, setHoveredService] = useState<number | null>(null);
+  const cubeRef = useRef<HTMLDivElement>(null);
+  const sceneRef = useRef<THREE.Scene | null>(null);
+  const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
+  const cubeRef3D = useRef<THREE.Mesh | null>(null);
+  const isDragging = useRef(false);
+  const previousMousePosition = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    if (!cubeRef.current) return;
+
+    // Crear escena Three.js
+    const scene = new THREE.Scene();
+    sceneRef.current = scene;
+
+    // Crear cámara
+    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+    camera.position.z = 8; // Aumentar distancia para cubo más grande
+
+    // Crear renderer
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(320, 320); // Aumentar tamaño del renderer
+    renderer.setClearColor(0x000000, 0);
+    rendererRef.current = renderer;
+
+    // Crear geometría del cubo más grande
+    const geometry = new THREE.BoxGeometry(3, 3, 3); // Aumentar tamaño del cubo
+
+    // Crear materiales para cada cara con colores diferentes
+    const materials = [
+      new THREE.MeshBasicMaterial({ color: 0x3B82F6, transparent: true, opacity: 0.9 }), // Azul - Creatividad
+      new THREE.MeshBasicMaterial({ color: 0x8B5CF6, transparent: true, opacity: 0.9 }), // Púrpura - Innovación
+      new THREE.MeshBasicMaterial({ color: 0x10B981, transparent: true, opacity: 0.9 }), // Verde - Calidad
+      new THREE.MeshBasicMaterial({ color: 0xEF4444, transparent: true, opacity: 0.9 }), // Rojo - Pasión
+      new THREE.MeshBasicMaterial({ color: 0xEAB308, transparent: true, opacity: 0.9 }), // Amarillo - Excelencia
+      new THREE.MeshBasicMaterial({ color: 0xEC4899, transparent: true, opacity: 0.9 }), // Rosa - Resultados
+    ];
+
+    // Crear el cubo
+    const cube = new THREE.Mesh(geometry, materials);
+    cubeRef3D.current = cube;
+    scene.add(cube);
+
+    // Función para crear texto 3D
+    const createText = (text: string, position: [number, number, number], rotation: [number, number, number]) => {
+      // Crear un canvas para el texto
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      if (!context) return;
+
+      canvas.width = 256;
+      canvas.height = 256;
+      
+      // Configurar el contexto
+      context.fillStyle = 'white';
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.fillStyle = '#1f2937';
+      context.font = 'bold 48px Arial';
+      context.textAlign = 'center';
+      context.textBaseline = 'middle';
+      
+      // Dibujar el texto
+      context.fillText(text, canvas.width / 2, canvas.height / 2);
+      
+      // Crear textura y material
+      const texture = new THREE.CanvasTexture(canvas);
+      const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true, opacity: 0.9 });
+      
+      // Crear geometría plana para el texto
+      const textGeometry = new THREE.PlaneGeometry(2.5, 2.5);
+      const textMesh = new THREE.Mesh(textGeometry, material);
+      
+      // Posicionar y rotar el texto
+      textMesh.position.set(...position);
+      textMesh.rotation.set(...rotation);
+      
+      scene.add(textMesh);
+    };
+
+    // Agregar texto en cada cara del cubo
+    createText('TPI', [0, 0, 1.6], [0, 0, 0]); // Frontal
+    createText('Creatividad', [0, 0, 1.6], [0, 0, 0]);
+    
+    createText('TPI', [0, 0, -1.6], [0, Math.PI, 0]); // Trasera
+    createText('Innovación', [0, 0, -1.6], [0, Math.PI, 0]);
+    
+    createText('TPI', [-1.6, 0, 0], [0, -Math.PI/2, 0]); // Izquierda
+    createText('Calidad', [-1.6, 0, 0], [0, -Math.PI/2, 0]);
+    
+    createText('TPI', [1.6, 0, 0], [0, Math.PI/2, 0]); // Derecha
+    createText('Pasión', [1.6, 0, 0], [0, Math.PI/2, 0]);
+    
+    createText('TPI', [0, 1.6, 0], [-Math.PI/2, 0, 0]); // Superior
+    createText('Excelencia', [0, 1.6, 0], [-Math.PI/2, 0, 0]);
+    
+    createText('TPI', [0, -1.6, 0], [Math.PI/2, 0, 0]); // Inferior
+    createText('Resultados', [0, -1.6, 0], [Math.PI/2, 0, 0]);
+
+    // Agregar renderer al DOM
+    cubeRef.current.innerHTML = '';
+    cubeRef.current.appendChild(renderer.domElement);
+
+    // Función de renderizado
+    const animate = () => {
+      requestAnimationFrame(animate);
+      
+      // Rotación automática suave cuando no se está arrastrando
+      if (!isDragging.current) {
+        cube.rotation.x += 0.005;
+        cube.rotation.y += 0.005;
+      }
+      
+      renderer.render(scene, camera);
+    };
+
+    animate();
+
+    // Eventos del mouse
+    const handleMouseDown = (event: MouseEvent) => {
+      isDragging.current = true;
+      previousMousePosition.current = { x: event.clientX, y: event.clientY };
+    };
+
+    const handleMouseMove = (event: MouseEvent) => {
+      if (!isDragging.current || !cubeRef3D.current) return;
+
+      const deltaMove = {
+        x: event.clientX - previousMousePosition.current.x,
+        y: event.clientY - previousMousePosition.current.y
+      };
+
+      cubeRef3D.current.rotation.y += deltaMove.x * 0.01;
+      cubeRef3D.current.rotation.x += deltaMove.y * 0.01;
+
+      previousMousePosition.current = { x: event.clientX, y: event.clientY };
+    };
+
+    const handleMouseUp = () => {
+      isDragging.current = false;
+    };
+
+    // Agregar event listeners
+    renderer.domElement.addEventListener('mousedown', handleMouseDown);
+    renderer.domElement.addEventListener('mousemove', handleMouseMove);
+    renderer.domElement.addEventListener('mouseup', handleMouseUp);
+    renderer.domElement.addEventListener('mouseleave', handleMouseUp);
+
+    // Cleanup
+    return () => {
+      renderer.domElement.removeEventListener('mousedown', handleMouseDown);
+      renderer.domElement.removeEventListener('mousemove', handleMouseMove);
+      renderer.domElement.removeEventListener('mouseup', handleMouseUp);
+      renderer.domElement.removeEventListener('mouseleave', handleMouseUp);
+      
+      if (cubeRef.current && renderer.domElement.parentNode) {
+        cubeRef.current.removeChild(renderer.domElement);
+      }
+      
+      geometry.dispose();
+      materials.forEach(material => material.dispose());
+      renderer.dispose();
+    };
+  }, []);
 
   return (
     <section id="services" className="w-screen h-screen flex items-center justify-center bg-white relative overflow-hidden" style={{ width: '200vw' }}>
@@ -111,13 +274,33 @@ export default function ServicesSection() {
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-900 mb-6 font-cairo">
               Nuestros
             </h2>
-            <h2 className="text-6xl md:text-8xl lg:text-9xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent mb-8 font-cairo">
+            <h2 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 font-cairo" style={{ color: '#f67676' }}>
               Servicios
             </h2>
             <p className="text-xl md:text-2xl lg:text-3xl text-gray-600 max-w-2xl mx-auto font-poppins">
               Transformamos ideas en experiencias digitales extraordinarias
             </p>
           </motion.div>
+        </div>
+
+        {/* Center - Cubo 3D Real con Three.js */}
+        <div className="flex-1 flex items-center justify-center px-8">
+          <div className="relative w-80 h-80">
+            <div 
+              ref={cubeRef}
+              className="w-full h-full cursor-grab active:cursor-grabbing"
+              style={{ 
+                borderRadius: '8px',
+                overflow: 'hidden'
+              }}
+            />
+            
+            {/* Texto Flotante */}
+            <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 text-center">
+              <div className="text-lg font-bold text-gray-800">¡Cubo 3D Real!</div>
+              <div className="text-sm text-gray-600">Click y arrastra para rotar</div>
+            </div>
+          </div>
         </div>
 
         {/* Right Side - Services Grid */}
@@ -226,7 +409,7 @@ export default function ServicesSection() {
 
       {/* Barra de fondo con imagen única */}
       <BackgroundBar 
-        image="/backgrounds/fondo-colores-tpi-1.png"
+        image="/backgrounds/fondo-colores-tpi-22.png"
         height="h-20"
       />
     </section>

@@ -4,11 +4,11 @@ import { motion } from 'framer-motion';
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 relative overflow-hidden" style={{ width: '200vw' }}>
+    <section id="contact" className="w-screen h-screen flex items-center justify-center relative overflow-hidden" style={{ width: '200vw', backgroundColor: '#bd74ef' }}>
       {/* Background Elements */}
       <div className="absolute inset-0">
         <motion.div
-          className="absolute top-1/3 right-1/4 w-32 h-32 bg-blue-500/20 rounded-full blur-2xl"
+          className="absolute top-1/3 right-1/4 w-32 h-32 bg-white/20 rounded-full blur-2xl"
           animate={{
             scale: [1, 1.5, 1],
             opacity: [0.3, 0.6, 0.3],
@@ -20,7 +20,7 @@ export default function ContactSection() {
           }}
         />
         <motion.div
-          className="absolute bottom-1/3 left-1/4 w-40 h-40 bg-purple-500/20 rounded-full blur-2xl"
+          className="absolute bottom-1/3 left-1/4 w-40 h-40 bg-white/20 rounded-full blur-2xl"
           animate={{
             scale: [1.5, 1, 1.5],
             opacity: [0.2, 0.5, 0.2],
@@ -65,15 +65,15 @@ export default function ContactSection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center text-white"
+            className="text-center"
           >
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 font-cairo">
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 font-cairo text-gray-900">
               Hablemos de
             </h2>
-            <h2 className="text-6xl md:text-8xl lg:text-9xl font-bold bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent mb-8 font-cairo">
+            <h2 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 font-cairo" style={{ color: '#5B21B6' }}>
               tu proyecto
             </h2>
-            <p className="text-xl md:text-2xl lg:text-3xl text-gray-300 max-w-2xl mx-auto font-poppins">
+            <p className="text-xl md:text-2xl lg:text-3xl text-gray-900 max-w-2xl mx-auto font-poppins">
               ¿Tienes una idea que quieres hacer realidad? Nos encantaría escucharla y ayudarte a transformarla en algo extraordinario.
             </p>
           </motion.div>

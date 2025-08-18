@@ -25,13 +25,14 @@ export default function Navigation() {
       
       let currentSection = 0;
       
-      if (scrollPosition < sectionHeight * 0.5) {
+      // Cambio de sección cuando realmente llegas a ella (no antes)
+      if (scrollPosition < sectionHeight * 0.8) {
         currentSection = 0; // Hero
-      } else if (scrollPosition < sectionHeight * 1.5) {
+      } else if (scrollPosition < sectionHeight * 1.8) {
         currentSection = 1; // Services
-      } else if (scrollPosition < sectionHeight * 2.5) {
+      } else if (scrollPosition < sectionHeight * 2.8) {
         currentSection = 2; // Team
-      } else if (scrollPosition < sectionHeight * 3.5) {
+      } else if (scrollPosition < sectionHeight * 3.8) {
         currentSection = 3; // Testimonials
       } else {
         currentSection = 4; // Contact

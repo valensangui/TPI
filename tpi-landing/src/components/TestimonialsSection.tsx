@@ -93,7 +93,7 @@ const clients = [
 
 export default function TestimonialsSection() {
   return (
-    <section id="testimonials" className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 relative overflow-hidden" style={{ width: '200vw' }}>
+    <section id="testimonials" className="w-screen h-screen flex items-center justify-center bg-white relative overflow-hidden" style={{ width: '200vw' }}>
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -114,10 +114,10 @@ export default function TestimonialsSection() {
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-900 mb-6 font-cairo">
               Marcas que
             </h2>
-            <h2 className="text-6xl md:text-8xl lg:text-9xl font-bold bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent mb-8 font-cairo">
+            <h2 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 font-cairo" style={{ color: '#6ebe43' }}>
               Confían
             </h2>
-            <p className="text-xl md:text-2xl lg:text-3xl text-gray-600 max-w-2xl mx-auto font-poppins">
+            <p className="text-xl md:text-2xl lg:text-3xl text-gray-900 max-w-2xl mx-auto font-poppins">
               Hemos tenido el privilegio de trabajar con empresas reconocidas, transformando sus ideas en experiencias extraordinarias.
             </p>
           </motion.div>
@@ -196,11 +196,11 @@ export default function TestimonialsSection() {
                 <div className="text-xs sm:text-sm text-gray-600 font-source-sans">Proyectos</div>
               </div>
               <div>
-                <div className="text-2xl sm:text-3xl font-bold text-purple-600 mb-1 font-cairo">98%</div>
+                <div className="text-2xl sm:text-3xl font-bold text-purple-600 mb-1 font-cairo">100%</div>
                 <div className="text-xs sm:text-sm text-gray-600 font-source-sans">Satisfacción</div>
               </div>
               <div>
-                <div className="text-2xl sm:text-3xl font-bold text-green-600 mb-1 font-cairo">5+</div>
+                <div className="text-2xl sm:text-3xl font-bold text-green-600 mb-1 font-cairo">20+</div>
                 <div className="text-xs sm:text-sm text-gray-600 font-source-sans">Años</div>
               </div>
               <div>

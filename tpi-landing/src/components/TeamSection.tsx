@@ -51,7 +51,7 @@ const teamMembers = [
 
 export default function TeamSection() {
   return (
-    <section id="team" className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 via-blue-50 to-purple-50 relative overflow-hidden" style={{ width: '200vw' }}>
+    <section id="team" className="w-screen h-screen flex items-center justify-center bg-yellow-400 relative overflow-hidden" style={{ width: '200vw' }}>
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -72,10 +72,10 @@ export default function TeamSection() {
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-900 mb-6 font-cairo">
               Nuestro
             </h2>
-            <h2 className="text-6xl md:text-8xl lg:text-9xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent mb-8 font-cairo">
+            <h2 className="text-6xl md:text-8xl lg:text-9xl font-bold text-gray-900 mb-8 font-cairo">
               Equipo
             </h2>
-            <p className="text-xl md:text-2xl lg:text-3xl text-gray-600 max-w-2xl mx-auto font-poppins">
+            <p className="text-xl md:text-2xl lg:text-3xl text-gray-900 max-w-2xl mx-auto font-poppins">
               Conoce a las mentes creativas detrás de Think Positive Ideas. Somos un equipo apasionado por transformar ideas en experiencias extraordinarias.
             </p>
           </motion.div>
