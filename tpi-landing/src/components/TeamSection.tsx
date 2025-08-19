@@ -52,6 +52,17 @@ const teamMembers = [
 export default function TeamSection() {
   return (
     <section id="team" className="w-screen h-screen flex items-center justify-center bg-yellow-400 relative overflow-hidden" style={{ width: '200vw' }}>
+      {/* Imagen de fondo izquierda - ocupa toda la primera parte visible */}
+      <div className="absolute left-0 top-0 w-screen h-full z-0">
+        <img
+          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+          alt="Fondo Equipo"
+          className="w-full h-full object-cover"
+        />
+        {/* Overlay sutil para mejorar legibilidad del texto */}
+        <div className="absolute inset-0 bg-black/20"></div>
+      </div>
+
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -137,12 +148,6 @@ export default function TeamSection() {
           </div>
         </div>
       </div>
-
-      {/* Barra de fondo con imagen única */}
-      <BackgroundBar 
-        image="/backgrounds/fondo-colores-tpi-4.png"
-        height="h-20"
-      />
     </section>
   );
 } 

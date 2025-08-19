@@ -113,8 +113,8 @@ export default function ServicesSection() {
     renderer.setClearColor(0x000000, 0);
     rendererRef.current = renderer;
 
-    // Crear geometría del cubo más grande
-    const geometry = new THREE.BoxGeometry(3, 3, 3); // Aumentar tamaño del cubo
+    // Crear geometría del cubo
+    const geometry = new THREE.BoxGeometry(4, 4, 4); // Cambiado de 3, 3, 3 a 4, 4, 4
 
     // Crear materiales para cada cara con colores diferentes
     const materials = [
@@ -138,53 +138,47 @@ export default function ServicesSection() {
       const context = canvas.getContext('2d');
       if (!context) return;
 
-      canvas.width = 256;
+      canvas.width = 512; // Aumentado de 256 a 512 para más espacio
       canvas.height = 256;
       
-      // Configurar el contexto
-      context.fillStyle = 'white';
-      context.fillRect(0, 0, canvas.width, canvas.height);
-      context.fillStyle = '#1f2937';
-      context.font = 'bold 48px Arial';
+      // Configurar el contexto - SIN fondo blanco
+      context.clearRect(0, 0, canvas.width, canvas.height); // Limpiar el canvas
+      context.fillStyle = '#1f2937'; // Solo el color del texto
+      context.font = 'bold 48px Arial'; // Cambiado de 36px a 48px para texto más grande
       context.textAlign = 'center';
       context.textBaseline = 'middle';
       
-      // Dibujar el texto
+      // Dibujar solo el texto
       context.fillText(text, canvas.width / 2, canvas.height / 2);
       
       // Crear textura y material
       const texture = new THREE.CanvasTexture(canvas);
-      const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true, opacity: 0.9 });
+      const material = new THREE.MeshBasicMaterial({ 
+        map: texture, 
+        transparent: true, 
+        opacity: 1.0,
+        side: THREE.DoubleSide
+      });
       
-      // Crear geometría plana para el texto
-      const textGeometry = new THREE.PlaneGeometry(2.5, 2.5);
+      // Crear geometría plana para el texto - ajustada para palabras largas
+      const textGeometry = new THREE.PlaneGeometry(3, 1.5); // Ajustado de 2x2 a 3x1.5 para mejor proporción
       const textMesh = new THREE.Mesh(textGeometry, material);
       
       // Posicionar y rotar el texto
       textMesh.position.set(...position);
       textMesh.rotation.set(...rotation);
       
-      scene.add(textMesh);
+      // Agregar el texto como hijo del cubo para que rote con él
+      cube.add(textMesh);
     };
 
-    // Agregar texto en cada cara del cubo
-    createText('TPI', [0, 0, 1.6], [0, 0, 0]); // Frontal
-    createText('Creatividad', [0, 0, 1.6], [0, 0, 0]);
-    
-    createText('TPI', [0, 0, -1.6], [0, Math.PI, 0]); // Trasera
-    createText('Innovación', [0, 0, -1.6], [0, Math.PI, 0]);
-    
-    createText('TPI', [-1.6, 0, 0], [0, -Math.PI/2, 0]); // Izquierda
-    createText('Calidad', [-1.6, 0, 0], [0, -Math.PI/2, 0]);
-    
-    createText('TPI', [1.6, 0, 0], [0, Math.PI/2, 0]); // Derecha
-    createText('Pasión', [1.6, 0, 0], [0, Math.PI/2, 0]);
-    
-    createText('TPI', [0, 1.6, 0], [-Math.PI/2, 0, 0]); // Superior
-    createText('Excelencia', [0, 1.6, 0], [-Math.PI/2, 0, 0]);
-    
-    createText('TPI', [0, -1.6, 0], [Math.PI/2, 0, 0]); // Inferior
-    createText('Resultados', [0, -1.6, 0], [Math.PI/2, 0, 0]);
+    // Agregar texto a cada cara del cubo
+    createText('MARKETING', [0, 0, 2.2], [0, 0, 0]); // Frontal - z positivo
+    createText('DISEÑO', [0, 0, -2.2], [0, Math.PI, 0]); // Trasera - z negativo
+    createText('WEB', [-2.2, 0, 0], [0, -Math.PI/2, 0]); // Izquierda - x negativo
+    createText('VIDEO', [2.2, 0, 0], [0, Math.PI/2, 0]); // Derecha - x positivo
+    createText('EVENTOS', [0, 2.2, 0], [-Math.PI/2, 0, 0]); // Superior - y positivo
+    createText('COMUNICACIÓN', [0, -2.2, 0], [Math.PI/2, 0, 0]); // Inferior - y negativo
 
     // Agregar renderer al DOM
     cubeRef.current.innerHTML = '';
@@ -200,6 +194,7 @@ export default function ServicesSection() {
         cube.rotation.y += 0.005;
       }
       
+      // Renderizar la escena completa (cubo + texto)
       renderer.render(scene, camera);
     };
 
@@ -259,6 +254,17 @@ export default function ServicesSection() {
         <div className="absolute inset-0" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }} />
+      </div>
+
+      {/* Imagen de fondo izquierda - ocupa toda la primera parte visible */}
+      <div className="absolute left-0 top-0 w-screen h-full z-0">
+        <img
+          src="https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80"
+          alt="Fondo Servicios"
+          className="w-full h-full object-cover"
+        />
+        {/* Overlay sutil para mejorar legibilidad del texto */}
+        <div className="absolute inset-0 bg-black/20"></div>
       </div>
 
       <div className="relative z-10 flex items-center justify-center w-full h-full">
@@ -406,12 +412,6 @@ export default function ServicesSection() {
           </div>
         </div>
       </div>
-
-      {/* Barra de fondo con imagen única */}
-      <BackgroundBar 
-        image="/backgrounds/fondo-colores-tpi-22.png"
-        height="h-20"
-      />
     </section>
   );
 } 
