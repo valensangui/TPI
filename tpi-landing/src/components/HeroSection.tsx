@@ -9,12 +9,14 @@ export default function HeroSection() {
       {/* Imagen de fondo izquierda - ocupa toda la primera parte visible */}
       <div className="absolute left-0 top-0 w-screen h-full z-0">
         <img
-          src="/Hero.png"
+          src="/hero.jpg"
           alt="Fondo Hero"
-          className="w-full h-full object-contain md:object-cover"
+          className="w-full h-full object-cover"
           style={{
             objectPosition: 'center center',
-            imageRendering: 'crisp-edges',
+            imageRendering: 'auto',
+            minHeight: '100vh',
+            minWidth: '100vw',
           }}
         />
         {/* Overlay sutil para mejorar legibilidad del texto */}
