@@ -9,9 +9,13 @@ export default function HeroSection() {
       {/* Imagen de fondo izquierda - ocupa toda la primera parte visible */}
       <div className="absolute left-0 top-0 w-screen h-full z-0">
         <img
-          src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80"
+          src="/Hero.png"
           alt="Fondo Hero"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain md:object-cover"
+          style={{
+            objectPosition: 'center center',
+            imageRendering: 'crisp-edges',
+          }}
         />
         {/* Overlay sutil para mejorar legibilidad del texto */}
         <div className="absolute inset-0 bg-black/30"></div>
